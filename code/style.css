@@ -1,0 +1,20 @@
+#gridSection { /* whole page */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#first_row, #second_row, #third_row {
+    display: flex;
+    justify-content: center;
+}
+
+#buttonsSection button { /* apply flex-grow to ALL child buttons! */
+    flex: 1; /* Make buttons grow to fill container width eg. 600px */
+    height: 100px;
+}
+
+#buttonsSection {
+    width: 600px;
+}
+
