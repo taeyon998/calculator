@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-#first_row, #second_row, #third_row {
+#first_row, #second_row, #third_row, #fourth_row {
     display: flex;
     justify-content: center;
 }
