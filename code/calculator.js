@@ -33,4 +33,9 @@ function display(n) {
     screenSection.append(num);
 }
 
+// add event listeners to all calculator buttons
+function initialize() {
+    
+}
+
 display(5);
