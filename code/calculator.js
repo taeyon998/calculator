@@ -62,3 +62,12 @@ function display(event) {
 }
 
 initialize();
+
+// add EVENT LISTENERS to all buttons
+function clickButton() {
+    for(i=0; i<buttons.length; i++){
+        buttons[i].addEventListener('click',function() {
+            
+        })
+    }
+}
