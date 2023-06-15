@@ -63,11 +63,25 @@ function display(event) {
 
 initialize();
 
+function inputOperand(v){
+    if(firstOperand === null){
+        if(displayValue==='0'){
+            firstOperand = v;
+        }
+        else{
+            displayValue += v;
+        }
+    }
+}
+
 // add EVENT LISTENERS to all buttons
 function clickButton() {
     for(i=0; i<buttons.length; i++){
         buttons[i].addEventListener('click',function() {
-            
+            if (buttons[i].classList.contains('operand')){
+                inputOperand(buttons[i].value);
+                display();
+            }
         })
     }
 }
