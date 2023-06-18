@@ -15,6 +15,7 @@ let divide = (a, b) => a / b;
 
 let n1, op, n2;
 
+// EFFECT: Given (5, '+', 6), performs 5+6 = 11
 function operate(a, op, b) {
     switch (op) {
         case '+':
@@ -34,7 +35,7 @@ function operate(a, op, b) {
 
 
 
-// add event listeners to all calculator buttons
+// EFFECT: add event listeners to all calculator buttons
 function initialize() {
     // Select ALL buttons in parent container #buttons Section
     const buttonsSection = document.querySelector('#buttonsSection');
@@ -63,16 +64,54 @@ function display(event) {
 
 initialize();
 
+// EFFECT: user clicks button '5' -> inputOperand(5) -> updates display from '0' -> '5'
 function inputOperand(v){
+    // "55" + 32 -> Don't update firstOperand, until user inputs operator!
     if(firstOperand === null){
-        if(displayValue==='0'){
-            firstOperand = v;
+        if(displayValue==='0'){ // Eg. By default, calculator displays '0'. We don't want it to become '05', we want it to be '5'
+            displayValue = v;
         }
         else{
-            displayValue += v;
+            displayValue += v; // Eg. '7' -> '75'
         }
     }
+    // 55 + "32" -> After user inputs operator
+    else {
+        if (displayValue===firstOperand){ // 3rd click, when inputting "3". Basically, display is still at 55, which is firstOperand. Update display from "55" -> "3"
+            displayValue = v;
+        }
+        else { // When inputting "2". Update display from "3" -> "32"
+            displayValue += v;
+        }        
+    }
 }
+
+// EFFECT: user clicks '+' -> inputOperator('+') -> updates firstOperand from null -> '55'
+function inputOperator(op){
+    // Case 1: firstOperand = null, firstOperator = null -> (1) update firstOperator = '+', (2) update firstOperand = '55'
+    if (firstOperand===null && firstOperator===null) {
+        firstOperator = op;
+        firstOperand = displayValue;
+    }
+    // Case 2: firstOperand = '55', firstOperator = '+', SecondOperand = null -> (1) update firstOperator = '+'
+    // Eg. User inputs "55 +", then changes operator to "*" 
+    else if (firstOperand!=null && firstOperator!=null && secondOperand === null){
+        firstOperator = op;
+    }
+    // Case 3: firstOperand = '55', firstOperator = '+', SecondOperand = '32' -> (1) update result from null -> '87', (2) update display from '55' -> '87', (3) update firstOperator = '+', (4) update SecondOperand = null
+    // Eg. User inputs "55 + 33", then inputs "+" again
+    else if (firstOperand!=null && firstOperator!=null && secondOperand != null){
+        result = operate(firstOperand, firstOperator, secondOperand);
+        displayValue = result;
+        firstOperator = op;
+        secondOperand = null;
+    }
+    else {
+        alert("error on inputerOperator(op)!")
+    }
+}
+
+// 
 
 // add EVENT LISTENERS to all buttons
 function clickButton() {
