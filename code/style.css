@@ -18,3 +18,30 @@
     width: 600px;
 }
 
+
+/* PURE DECORATION & COLORS */
+
+/* Black Background and grey borders */
+#container {
+    background-color: black;
+    border: 10px solid rgba(47,47,47,1);
+    border-radius: 4px;
+}
+
+#screenSection {
+    background-color: #b2b9b7;
+    padding: 5px;
+    font-size: 3em;
+    font-weight: initial;
+    margin: 5px;
+    text-shadow: 1.3px 1.3px #383838;
+}
+
+button {
+    /* font-weight: initial; */
+    font-size: 2em;
+    font-family: monospace;
+    margin: 1px;
+    border-radius: 5%;
+    border: none;
+}
