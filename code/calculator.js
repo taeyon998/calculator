@@ -17,6 +17,9 @@ let n1, op, n2;
 
 // EFFECT: Given (5, '+', 6), performs 5+6 = 11
 function operate(a, op, b) {
+    if (op===null){        
+        return displayValue;
+    }
     switch (op) {
         case '+':
             return add(a, b);
