@@ -13,8 +13,6 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 
-let n1, op, n2;
-
 // EFFECT: Given (5, '+', 6), performs 5+6 = 11
 function operate(a, op, b) {
     if (op===null){        
@@ -36,21 +34,6 @@ function operate(a, op, b) {
     }
 }
 
-
-
-// EFFECT: add event listeners to all calculator buttons
-function initialize() {
-    // Select ALL buttons in parent container #buttons Section
-    const buttonsSection = document.querySelector('#buttonsSection');
-    const buttons = buttonsSection.querySelectorAll('button');
-
-    buttons.forEach((button) => {
-        button.addEventListener('click', display);
-    });
-
-    display();
-}
-
 // EFFECT: show displayValue
 function display(event) {
 
@@ -66,7 +49,7 @@ function display(event) {
     screenSection.append(num);
 }
 
-initialize();
+display();
 
 // EFFECT: user clicks button '5' -> inputOperand(5) -> updates display from '0' -> '5'
 function inputOperand(v) {
@@ -99,11 +82,11 @@ function inputOperator(op) {
         firstOperand = displayValue;
     }
     // Case 2:
-    // Eg. User inputs "5 + 3 =", then inputs "+"
+    // Eg. User inputs "5 + 3 =", then inputs "+" (operator and 2nd operand is reset after "="!)
     else if (firstOperand != null && firstOperator === null) {
         firstOperator = op;
     }
-    // Case 3: firstOperand = '55', firstOperator = '+' -> (0) update secondOperant from null to '32' (1) update result from null -> '87', (2) update display from '55' -> '87', (3) update firstOperator = '+', (4) update SecondOperand = null
+    // Case 3: 
     // Eg. User inputs "55 + 32", then inputs "+" again    
     else{
         secondOperand = displayValue;
@@ -126,6 +109,7 @@ function clearDisplay() {
 function inputEquals(){
     secondOperand = displayValue;
     result = operate(Number(firstOperand), firstOperator, Number(secondOperand));
+    
     displayValue = result;
     firstOperand = result; // "3" + 5
     secondOperand = null; // 3 + "5"
@@ -135,12 +119,11 @@ function inputEquals(){
 
 // add EVENT LISTENERS to all buttons
 function clickButton() {
-    console.log(`${buttons.length}`);
+
     for (let i = 0; i < buttons.length; i++) {
 
         buttons[i].addEventListener('click', function () {
             if (buttons[i].classList.contains('operand')) {
-                console.log(`${buttons[i]}`);
                 inputOperand(buttons[i].textContent);
                 display();
             }
