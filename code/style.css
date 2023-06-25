@@ -1,3 +1,5 @@
+
+
 #gridSection { /* whole page */
     display: flex;
     flex-direction: column;
@@ -37,11 +39,38 @@
     text-shadow: 1.3px 1.3px #383838;
 }
 
+
 button {
-    /* font-weight: initial; */
     font-size: 2em;
     font-family: monospace;
     margin: 1px;
     border-radius: 5%;
     border: none;
+} 
+
+/* Button Colors */
+.operand {
+    background-color: rgb(3, 156, 105);
 }
+
+.clear, .equals {
+    background-color: rgb(6, 179, 179);
+}
+
+.operator {
+    background-color: orange;
+}
+
+/* Change Button Color on click */
+.operand:active { /* Change color while right clicked */
+    background-color: rgb(99, 248, 199);
+}
+
+.clear:active, .equals:active {
+    background-color: rgb(49, 247, 247);
+}
+
+.operator:focus { /* Change color, until next operation */
+    background-color: rgb(250, 209, 132);
+}
+
